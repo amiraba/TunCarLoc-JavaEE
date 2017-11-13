@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="basenames" value="WEB-INF/messages" />
+    </bean>
+    
+
+  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    <property name="messageInterpolator">
+      <bean class="model.validators.SpringMessageSourceMessageInterpolator" />
+    </property>
+  </bean>
+
+<bean id="cnx" class="dao.classes.Connexion" >
+    <property name="dBurl" value="jdbc:derby://localhost:1527/Car" />
+</bean>
+
+
+
+<!-- Affichage Business -->
+<bean name="controllerAffichage" class="controllers.AffichageController" >
+    
+    <property name="affichageManager">
+        <ref bean="affichageManager" />
+    </property>
+</bean>
+<bean id="affichageManager" class="model.Business.AffichageManager" >
+    <property name="daoAffichage" >
+        <ref bean="daoAffichage" />
+    </property>
+</bean>
+<bean id="daoAffichage" class="dao.classes.DaoAffichage" >
+   <property name="cnx">
+       <ref bean="cnx" />
+   </property>    
+</bean>
+
+
+
+<!-- User Business -->
+<bean id="inscrip" class="model.bean.Inscrip" ></bean>
+<bean name="controllerUser" class="controllers.UserController" >
+    <property name="userManager">
+        <ref bean="userManager" />
+    </property>
+</bean>
+<bean id="userManager" class="model.Business.UserManager" >
+    <property name="daoUser" >
+        <ref bean="daoUser" />
+    </property>
+</bean>
+<bean id="daoUser" class="dao.classes.DaoUser" >
+   <property name="cnx">
+       <ref bean="cnx" />
+   </property>
+</bean>
+
+
+
+<!--  Voiture Business -->
+<bean id="voitureAdd" class="model.bean.VoitureAdd" ></bean>
+<bean id="voitureDelete" class="model.bean.VoitureDelete" ></bean>
+
+<bean name="controllervoiture" class="controllers.VoitureController" >
+    <property name="voitureManager">
+        <ref bean="voituremanager" />
+    </property>
+</bean>
+<bean id="voituremanager" class="model.Business.VoitureManager" >
+    <property name="daovoiture" >
+        <ref bean="daovoiture" />
+    </property>
+</bean>
+<bean id="daovoiture" class="dao.classes.DaoVoiture" >
+   <property name="cnx">
+       <ref bean="cnx" />
+   </property>    
+</bean>
+
+<!-- Rech Business -->
+<bean id="rech" class="model.bean.Rech" ></bean>  
+
+</beans>

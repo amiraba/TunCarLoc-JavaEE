@@ -1,0 +1,21 @@
+            .welcomeText{
+                color: #46b8da;
+            }
+            #deco:hover{
+                color:#985f0d;
+                text-decoration: none;
+            }
+            .divLogo{
+                float: right;
+                width: 45%;
+                height: 14%;
+                vertical-align: top;
+                horizontal-align:right;
+                opacity: 0.8;
+            }
+            .fooooter{
+                position: fixed; font-size: 8px; bottom: 0;
+            }
+            .deco{
+                color: #23527c; font-size: large 
+            }

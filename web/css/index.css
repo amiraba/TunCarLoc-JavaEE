@@ -1,0 +1,24 @@
+welcoming a{
+                color: #c0a16b;
+            }
+            welcoming.welcomeText{
+                color: #ccccff;
+                font-weight: bolder;
+                padding: 0 2em;
+                font-family: Montserrat, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                text-rendering: optimizeLegibility;
+                color: #d6ccc2;
+            }
+            .ahovered{
+                color: #1b6d85; font-size: large
+            }
+            .ahovered:hover{
+                text-decoration: none;
+            }
+            .moveable:hover {
+                z-index:99;
+                margin-left: 30px;    
+                transition: margin-left .5s;
+                -webkit-transition: margin-left .5s; /* Safari and Chrome */
+            }
